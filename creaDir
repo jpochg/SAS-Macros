@@ -1,0 +1,28 @@
+%macro creaDir (dhijo, dpadre) /DES='Crea el directorio &dhijo en &dpadre';
+
+	data _null_;
+		if not fileexist("&dpadre") then do;
+
+			/*%abort cancel;
+			  abort cancel file /*nolist*/;
+			put "ERROR: No existe el directorio &dpadre.. Hay que crearlo.";
+		end;
+		else do;
+			newdir=dcreate("&dhijo","&dpadre");
+
+			/* avisos al Log (prescindibles)*/
+			if newdir ne "" then
+				put "NOTE: Se ha creado el directorio &dpadre.&dhijo..";
+			else put "NOTE: Ya existía el directorio &dpadre.&dhijo..";
+
+			/**/
+		end;
+	run;
+
+%mend creaDir;
+
+/* Ejemplo de uso * /
+%creaDir(dhijo=jpochg, dpadre=/opt/sas/grid/content/);
+%creaDir(dhijo=jpochg, dpadre=c:\temp\); 
+/**/
+
