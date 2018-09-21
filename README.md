@@ -1,2 +1,2 @@
 # SAS-Macros
-My SAS macros sharing site
+SAS macros sharing site
